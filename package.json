@@ -1,0 +1,28 @@
+{
+  "name": "typescript-sandbox",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "scripts": {
+    "dev": "yarn nodemon src/index.ts",
+    "lint": "eslint . --ext .tsx,.ts && tsc",
+    "test": "nyc ts-node -T node_modules/.bin/tape 'src/**/*.test.*'"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.30",
+    "@types/sinon": "^9.0.10",
+    "@types/tape": "^4.13.0",
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "@typescript-eslint/parser": "^4.15.1",
+    "eslint": "^7.20.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.7",
+    "nyc": "^15.1.0",
+    "sinon": "^9.2.4",
+    "tape": "^5.1.1",
+    "ts-node": "^9.1.1",
+    "tslib": "^2.1.0",
+    "typescript": "^4.1.5"
+  }
+}
