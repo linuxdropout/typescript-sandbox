@@ -2,3 +2,4 @@ node_modules
 .nyc*
 .npm*
 .env*
+dist
