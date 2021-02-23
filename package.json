@@ -1,12 +1,14 @@
 {
   "name": "typescript-sandbox",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "dev": "yarn nodemon src/index.ts",
     "lint": "eslint . --ext .tsx,.ts && tsc",
-    "test": "nyc ts-node -T node_modules/.bin/tape 'src/**/*.test.*'"
+    "test": "nyc ts-node -T node_modules/.bin/tape 'src/**/*.test.*'",
+    "test:coverage:html": "nyc --reporter=html ts-node -T node_modules/.bin/tape 'src/**/*.test.*'",
+    "postinstall": "npx tsc"
   },
   "devDependencies": {
     "@types/node": "^14.14.30",
