@@ -102,9 +102,9 @@ tape('parseGenericExpression :: wildcards with steps', t => {
   const testCases = [
     {
       input: '*/15',
-      expectedOutput: [0, 15, 30, 45, 60],
+      expectedOutput: [0, 15, 30, 45],
       min: 0,
-      max: 60,
+      max: 59,
     },
     {
       input: '*/5',
