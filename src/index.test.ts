@@ -1,5 +1,5 @@
 import tape from 'tape'
-import { parseCronExpression } from './index'
+import { formatCronExpression, parseCronExpression } from './index'
 
 const exampleValidTestCases = [
   {
@@ -12,6 +12,13 @@ const exampleValidTestCases = [
       dayOfWeek: [1, 2, 3, 4, 5],
       command: '/usr/bin/find',
     },
+    expectedFormat: `minute\t\t0 15 30 45
+hour\t\t0
+day of month\t1 15
+month\t\t1 2 3 4 5 6 7 8 9 10 11 12
+day of week\t1 2 3 4 5
+command\t\t/usr/bin/find
+`,
   },
 ]
 tape('Expression outputs correct types', t => {
@@ -45,7 +52,21 @@ tape('Expression output is as expected', t => {
   for (const { input, expectedOutput } of exampleValidTestCases) {
     const output = parseCronExpression(input)
 
-    t.deepEqual(output, expectedOutput)
+    t.deepEqual(output, expectedOutput, `Parses ${input} as ${output}`)
+  }
+  t.end()
+})
+
+tape('Expression format is as expected', t => {
+  for (const { input, expectedFormat } of exampleValidTestCases) {
+    const output = parseCronExpression(input)
+    const formattedOutput = formatCronExpression(output)
+
+    t.equal(
+      formattedOutput,
+      expectedFormat,
+      `Formats ${input} as ${output}`,
+    )
   }
   t.end()
 })

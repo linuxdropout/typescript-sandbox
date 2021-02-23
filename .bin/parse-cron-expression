@@ -1,3 +1,5 @@
 #!/bin/sh
 
-node ../dist/index.js
+BASEDIR=$(dirname $0)
+
+node $BASEDIR/../dist/index.js "$@"

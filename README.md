@@ -1,5 +1,12 @@
 # Documentation
 
+TLDR version:
+
+```
+yarn
+sh .bin/parse-cron-expression "*/15 0 1,15 * 1-5 /usr/bin/find"
+```
+
 ## Dependencies
 
 Requires [`node`](https://nodejs.org/en/) and [`yarn`](https://www.npmjs.com/package/yarn)
