@@ -71,3 +71,55 @@ tape('parseGenericExpression :: wildcards', t => {
 
   t.end()
 })
+
+tape('parseGenericExpression :: wildcards', t => {
+  const testCases = [
+    {
+      input: '*',
+      expectedOutput: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      min: 0,
+      max: 12,
+    },
+    {
+      input: '*',
+      expectedOutput: [3, 4, 5, 6, 7],
+      min: 3,
+      max: 7,
+    },
+  ]
+
+  for (const {
+    input, expectedOutput, min, max,
+  } of testCases) {
+    const output = parseGenericExpression(input, { min, max })
+    t.deepEqual(output, expectedOutput, `Parses ${input} as ${expectedOutput}`)
+  }
+
+  t.end()
+})
+
+tape('parseGenericExpression :: wildcards with steps', t => {
+  const testCases = [
+    {
+      input: '*/15',
+      expectedOutput: [0, 15, 30, 45, 60],
+      min: 0,
+      max: 60,
+    },
+    {
+      input: '*/5',
+      expectedOutput: [5, 10, 15],
+      min: 3,
+      max: 16,
+    },
+  ]
+
+  for (const {
+    input, expectedOutput, min, max,
+  } of testCases) {
+    const output = parseGenericExpression(input, { min, max })
+    t.deepEqual(output, expectedOutput, `Parses ${input} as ${expectedOutput}`)
+  }
+
+  t.end()
+})

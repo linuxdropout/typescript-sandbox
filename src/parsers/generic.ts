@@ -24,7 +24,15 @@ function parseSubExpression(subExpression: string, options?: ParseOptions): numb
     const rangeStart = options?.min || 0
     const rangeEnd = options?.max || 60
 
-    return createRange(rangeStart, rangeEnd)
+    const wildcardRange = createRange(rangeStart, rangeEnd)
+
+    if (!subExpression.includes('/')) return wildcardRange
+
+    const step = parseInt(
+      subExpression.split('/').pop() as string,
+      10,
+    )
+    return wildcardRange.filter(v => v % step === 0)
   }
 
   return parseInt(subExpression, 10)
