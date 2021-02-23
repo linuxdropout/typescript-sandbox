@@ -112,6 +112,12 @@ tape('parseGenericExpression :: wildcards with steps', t => {
       min: 3,
       max: 16,
     },
+    {
+      input: '*/2',
+      expectedOutput: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22],
+      min: 0,
+      max: 23,
+    },
   ]
 
   for (const {
