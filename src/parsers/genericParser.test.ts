@@ -31,3 +31,17 @@ tape('parseGenericExpression :: comma seperated numbers', t => {
 
   t.end()
 })
+
+tape('parseGenericExpression :: ranges', t => {
+  const testCases = [
+    { input: '0-5', expectedOutput: [0, 1, 2, 3, 4, 5] },
+    { input: '15-30', expectedOutput: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30] },
+  ]
+
+  for (const { input, expectedOutput } of testCases) {
+    const output = parseGenericExpression(input)
+    t.deepEqual(output, expectedOutput, `Parses ${input} as ${expectedOutput}`)
+  }
+
+  t.end()
+})
