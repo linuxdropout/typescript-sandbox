@@ -2,9 +2,9 @@
 
 TLDR version:
 
-```
+```sh
 yarn
-sh .bin/parse-cron-expression "*/15 0 1,15 * 1-5 /usr/bin/find"
+parse-cron-expression "*/15 0 1,15 * 1-5 /usr/bin/find"
 ```
 
 ## Dependencies
@@ -32,18 +32,21 @@ yarn
 
 If you encounter an error, make sure yarn and node are installed, (see [Dependencies](##Dependencies))
 
-You can add the executable to your path (so you can run `parse-cron-expression` from anywhere) with the command:
+The executable will also be added to your path (so you can run `parse-cron-expression` from anywhere) with the command:
 ```
 . postinstall/add-to-path.sh
 ```
-WARNING: this will cause an error if you ever delete this directory, you can fix that error by removing the appended line from your `~/.bashrc`
 
 ---
 
 ## Usage [CLI]
 
 ```
-./.bin/parse-cron-expression "[minutes] [hours] [day_of_month] [day of week] [month] [command]"
+parse-cron-expression "[minutes] [hours] [day_of_month] [day of week] [month] [command]"
+```
+Alternatively
+```
+node dist/index.js "[minutes] [hours] [day_of_month] [day of week] [month] [command]"
 ```
 
 Outputs in text format by default:
