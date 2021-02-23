@@ -52,7 +52,7 @@ tape('Expression output is as expected', t => {
   for (const { input, expectedOutput } of exampleValidTestCases) {
     const output = parseCronExpression(input)
 
-    t.deepEqual(output, expectedOutput, `Parses ${input} as ${output}`)
+    t.deepEqual(output, expectedOutput, `Parses ${input} as ${JSON.stringify(output)}`)
   }
   t.end()
 })
@@ -65,7 +65,7 @@ tape('Expression format is as expected', t => {
     t.equal(
       formattedOutput,
       expectedFormat,
-      `Formats ${input} as ${output}`,
+      `Formats ${input} as ${formattedOutput}`,
     )
   }
   t.end()
