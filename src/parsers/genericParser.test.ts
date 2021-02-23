@@ -45,3 +45,29 @@ tape('parseGenericExpression :: ranges', t => {
 
   t.end()
 })
+
+tape('parseGenericExpression :: wildcards', t => {
+  const testCases = [
+    {
+      input: '*',
+      expectedOutput: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      min: 0,
+      max: 12,
+    },
+    {
+      input: '*',
+      expectedOutput: [3, 4, 5, 6, 7],
+      min: 3,
+      max: 7,
+    },
+  ]
+
+  for (const {
+    input, expectedOutput, min, max,
+  } of testCases) {
+    const output = parseGenericExpression(input, { min, max })
+    t.deepEqual(output, expectedOutput, `Parses ${input} as ${expectedOutput}`)
+  }
+
+  t.end()
+})
