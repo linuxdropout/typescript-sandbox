@@ -20,6 +20,17 @@ day of week\t1 2 3 4 5
 command\t\t/usr/bin/find
 `,
   },
+  {
+    input: '* * * * * /usr/bin/cat',
+    expectedOutput: {
+      minute: [...new Array(60).keys()],
+      hour: [...new Array(24).keys()],
+      dayOfMonth: [...new Array(32).keys()].slice(1),
+      month: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      dayOfWeek: [0, 1, 2, 3, 4, 5, 6],
+      command: '/usr/bin/cat',
+    },
+  },
 ]
 tape('Expression outputs correct types', t => {
   for (const { input } of exampleValidTestCases) {
@@ -59,6 +70,7 @@ tape('Expression output is as expected', t => {
 
 tape('Expression format is as expected', t => {
   for (const { input, expectedFormat } of exampleValidTestCases) {
+    if (!expectedFormat) continue
     const output = parseCronExpression(input)
     const formattedOutput = formatCronExpression(output)
 
