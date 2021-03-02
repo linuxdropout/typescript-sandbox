@@ -11,6 +11,12 @@ A new entry should be added whenever a key architectural decision is made
 
 Most cron expressions can generically parsed with the generic [parser](src/parsers/generic.ts)
 
+Basic architecture:
+ - START HERE - src/index.ts
+ - Parsers are stored in src/parsers (with the afforementioned generic being the most important)
+ - Postinstall scripts are in postinstall/
+ - The .bin folder contains the shell executable that is added to your path in .bashrc
+
 The extra parsers are arguably unneccesary due to how simple they are - but they are laid out as such to make it easy to add extra edge cases (such as validation - only allow months between 1 and 12 etc) with a clear easy place to add the code.
 
 Used [crontab](https://crontab.guru/) as the "source-of-truth" for decisions on which features to support and which ones to ignore for now. Also ignored all the non-standard options.
