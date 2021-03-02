@@ -6,7 +6,7 @@ A new entry should be added whenever a key architectural decision is made
 
 ---
 
-## Stardate: 2020-01-27
+## Stardate: 2020-02-27
 ### Opening Thoughts
 
 Most cron expressions can generically parsed with the generic [parser](src/parsers/generic.ts)
