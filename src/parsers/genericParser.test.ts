@@ -34,12 +34,18 @@ tape('parseGenericExpression :: comma seperated numbers', t => {
 
 tape('parseGenericExpression :: ranges', t => {
   const testCases = [
-    { input: '0-5', expectedOutput: [0, 1, 2, 3, 4, 5] },
-    { input: '15-30', expectedOutput: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30] },
+    {
+      input: '0-5', expectedOutput: [0, 1, 2, 3, 4, 5], min: 0, max: 5,
+    },
+    {
+      input: '15-30', expectedOutput: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], min: 15, max: 30,
+    },
   ]
 
-  for (const { input, expectedOutput } of testCases) {
-    const output = parseGenericExpression(input)
+  for (const {
+    input, expectedOutput, min, max,
+  } of testCases) {
+    const output = parseGenericExpression(input, { min, max })
     t.deepEqual(output, expectedOutput, `Parses ${input} as ${expectedOutput}`)
   }
 
@@ -124,6 +130,33 @@ tape('parseGenericExpression :: wildcards with steps', t => {
     input, expectedOutput, min, max,
   } of testCases) {
     const output = parseGenericExpression(input, { min, max })
+    t.deepEqual(output, expectedOutput, `Parses ${input} as ${expectedOutput}`)
+  }
+
+  t.end()
+})
+
+tape('parseGenericExpression :: ranges with steps', t => {
+  const testCases = [
+    { input: '10-20/2', expectedOutput: [10, 12, 14, 16, 18, 20] },
+  ]
+
+  for (const { input, expectedOutput } of testCases) {
+    const output = parseGenericExpression(input)
+    t.deepEqual(output, expectedOutput, `Parses ${input} as ${expectedOutput}`)
+  }
+
+  t.end()
+})
+
+tape('parseGenericExpression :: inverted range', t => {
+  const testCases = [
+    { input: '29-1', expectedOutput: [29, 30, 31, 1] },
+    // { input: '4-1', expectedOutput: [4, 5, 6, 0, 1] },
+  ]
+
+  for (const { input, expectedOutput } of testCases) {
+    const output = parseGenericExpression(input)
     t.deepEqual(output, expectedOutput, `Parses ${input} as ${expectedOutput}`)
   }
 

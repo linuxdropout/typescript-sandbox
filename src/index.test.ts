@@ -3,6 +3,24 @@ import { formatCronExpression, parseCronExpression } from './index'
 
 const exampleValidTestCases = [
   {
+    input: '*/15 0 10-20/2 * 1-5 /usr/bin/find',
+    expectedOutput: {
+      minute: [0, 15, 30, 45],
+      hour: [0],
+      dayOfMonth: [10, 12, 14, 16, 18, 20],
+      month: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      dayOfWeek: [1, 2, 3, 4, 5],
+      command: '/usr/bin/find',
+    },
+    expectedFormat: `minute\t\t0 15 30 45
+hour\t\t0
+day of month\t10 12 14 16 18 20
+month\t\t1 2 3 4 5 6 7 8 9 10 11 12
+day of week\t1 2 3 4 5
+command\t\t/usr/bin/find
+`,
+  },
+  {
     input: '*/15 0 1,15 * 1-5 /usr/bin/find',
     expectedOutput: {
       minute: [0, 15, 30, 45],

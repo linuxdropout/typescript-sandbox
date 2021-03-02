@@ -24,3 +24,13 @@ Used [crontab](https://crontab.guru/) as the "source-of-truth" for decisions on 
 You can read more about all the possible characters commonly in use [here](https://help.symantec.com/cs/SCWP/STORAGE/v123769576_v123767411/About-special-characters-in-CRON-expressions?locale=EN_US)
 
 ---
+
+## Stardate: 2020-03-02
+### Start/End range parsing
+
+We now support ranges like 5-5 or TUE-TUE, effectively creates a the full range (like with *) but starts with opening value.
+So TUE-TUE would be 2,3,4,5,6,0,1
+
+Decided to pass the regex for doing replacements like "Tuesday" as an argument - this is then used after splitting the value to prevent edge cases like JANJAN or FRIFRI.
+
+---
